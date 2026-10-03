@@ -1,0 +1,22 @@
+# Database backups
+*_backup*.db
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Python virtual environments
+venv/
+.venv/
+
+# IDE files
+.vscode/
+.idea/

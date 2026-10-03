@@ -1,0 +1,150 @@
+erDiagram
+    contributions {
+        INTEGER contribution_id PK
+        INTEGER evidence_id
+        TEXT field
+        TEXT contribution
+        TEXT significance
+        TEXT modern_relevance
+    }
+    evidence {
+        INTEGER evidence_id PK
+        INTEGER source_id
+        TEXT topic
+        TEXT claim
+        TEXT evidence_type
+        TEXT historical_period
+        TEXT location
+        TEXT description
+    }
+    evidence_fields {
+        INTEGER evidence_id PK
+        INTEGER field_id PK
+    }
+    evidence_people {
+        INTEGER evidence_id PK
+        INTEGER person_id PK
+        TEXT relationship
+    }
+    evidence_places {
+        INTEGER evidence_id PK
+        INTEGER place_id PK
+    }
+    evidence_quality {
+        INTEGER quality_id PK
+        INTEGER evidence_id
+        TEXT source_quality
+        TEXT citation_quality
+        TEXT verification_status
+        TEXT confidence_notes
+    }
+    evidence_texts {
+        INTEGER evidence_id PK
+        INTEGER text_id PK
+        TEXT relationship
+    }
+    evidence_types {
+        INTEGER evidence_type_id PK
+        TEXT type_name
+        TEXT description
+    }
+    fields {
+        INTEGER field_id PK
+        TEXT field_name
+        TEXT description
+    }
+    historical_periods {
+        INTEGER period_id PK
+        TEXT period_name
+        TEXT start_date
+        TEXT end_date
+        TEXT description
+    }
+    people {
+        INTEGER person_id PK
+        TEXT name
+        TEXT role
+        TEXT period
+        TEXT description
+    }
+    places {
+        INTEGER place_id PK
+        TEXT name
+        TEXT ancient_name
+        TEXT modern_country
+        REAL latitude
+        REAL longitude
+        TEXT description
+    }
+    references_data {
+        INTEGER reference_id PK
+        INTEGER evidence_id
+        TEXT reference_text
+        TEXT page_or_verse
+        TEXT url
+        TEXT citation_author
+        TEXT citation_work
+        TEXT citation_edition
+        TEXT citation_publisher
+        TEXT citation_year
+        TEXT citation_volume
+        TEXT citation_page
+        TEXT citation_book
+        TEXT citation_chapter
+        TEXT citation_verse
+        TEXT original_language
+        TEXT translation_used
+        TEXT translator
+        TEXT source_url
+        TEXT source_access_date
+        TEXT scholarly_reference
+        TEXT scholarly_url
+        TEXT verification_status
+        TEXT verification_notes
+        TEXT primary_source_url
+        TEXT primary_source_type
+        TEXT scholarly_source_url
+        TEXT scholarly_source_type
+        TEXT source_reliability
+        TEXT citation_verified
+    }
+    sources {
+        INTEGER source_id PK
+        TEXT title
+        TEXT source_type
+        TEXT author
+        TEXT date_period
+        TEXT language
+        TEXT url
+        TEXT notes
+    }
+    texts {
+        INTEGER text_id PK
+        TEXT title
+        TEXT text_type
+        TEXT language
+        TEXT approximate_period
+        TEXT description
+    }
+    verses {
+        INTEGER verse_id PK
+        INTEGER text_id
+        TEXT book
+        TEXT chapter
+        TEXT verse
+        TEXT original_text
+        TEXT translation
+    }
+    evidence ||--o{ contributions : "references"
+    sources ||--o{ evidence : "references"
+    fields ||--o{ evidence_fields : "references"
+    evidence ||--o{ evidence_fields : "references"
+    people ||--o{ evidence_people : "references"
+    evidence ||--o{ evidence_people : "references"
+    places ||--o{ evidence_places : "references"
+    evidence ||--o{ evidence_places : "references"
+    evidence ||--o{ evidence_quality : "references"
+    texts ||--o{ evidence_texts : "references"
+    evidence ||--o{ evidence_texts : "references"
+    evidence ||--o{ references_data : "references"
+    texts ||--o{ verses : "references"
